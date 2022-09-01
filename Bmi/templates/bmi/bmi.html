@@ -1,0 +1,119 @@
+{% extends 'base2.html' %} {% load static %} {% block title %} {% endblock %} {% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'bmi/bmi.css'%}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> {% endblock %} {% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#17a2b8;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon">
+  </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="{% url 'index' %}" style="color:white">PREMIER FITNESS GYM</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item ">
+                <a class="nav-link" href="{% url 'index' %}" style="color:white">HOME <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'blog' %}" style="color:white">BLOG</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active " href="{% url 'bmi' %}" style="color:white">BMI</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'classes' %}" style="color:white">CLASSES</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'contact' %}" style="color:white">CONTACT</a>
+            </li>
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+            <!-- {% comment %} <a class="btn btn-outline-success my-2 my-sm-0" style="color:white" type="submit" href="{% url 'sign-up'%}">SIGNUP</a>
+            <a class="btn btn-outline-success my-2 my-sm-0" style="color:white" type="submit" href="{% url 'sign-in'%}">SIGNIN</a> {% endcomment %} -->
+        </div>
+        </span>
+    </div>
+</nav>
+<style>
+    #bmi-infor {
+        float: left;
+        padding-left: 5%;
+        width: 75%;
+    }
+    
+    #right-table {
+        float: left;
+        width: 35%;
+        padding-left: 20px;
+    }
+</style>
+<section id="bmi-infor">
+    <span>
+      <h1>What Is Body Mass Index (BMI) and What Does It Measure?</h1>
+      <p class="body-text"style="text-align:left;font-size:25px">
+        Body mass index (BMI) is a calculation that is sometimes used in healthcare settings as an indirect method to determine a person's body weight category.This BMI calculator can help you learn what this measurement means and how it relates to your health and fitness.
+      </p>
+      <h1>What Is BMI?</h1>
+      <p style="text-align:left;font-size:25px">BMI is a measurement that takes into account your height, and weight to produce a calculation. This calculation is a measurement of your body size and can be used to determine how your body weight is related to your height.</p>
+      <p style="text-align:left;font-size:25px">BMI is not a diagnostic tool nor is it a measurement of body fat percentage. A high BMI may or may not be an indicator of high body fat, but it doesn't necessarily mean that a person is overweight or obese and it alone is not a direct indicator of health.</p>
+      <h1>How BMI Is Measured</h1>
+      <p style="text-align:left;font-size:25px">
+        Your BMI is calculated using your height and weight. It can be a starting point for understanding the way your body fat may impact your overall health. You can use the number along with other health measurements to begin a conversation with your healthcare provider about ways to reduce your risk for disease and improve your overall wellness.
+      </p>
+      <h2 style="text-align:center;">Imperial</h2>
+      <p style="text-align:center;font-size:25px;font-style:normal;">Formula: weight (lb) / [height (in)]2 x 703</p>
+      <p style="text-align:center;font-size:25px;font-style:normal;">Example: weight = 150 lbs, height = 5’5” (65")</p>
+      <p style="text-align:center;font-size:25px;font-style:normal;">BMI calculation: [150 / (65)2] x 703 = 24.96</p>
+      <h2 style="text-align:center;">Metric</h2>
+      <p style="text-align:center;font-size:25px;font-style:normal;">Formula: weight (kg) / [height (m)]21
+
+      </p>
+      <p style="text-align:center;font-size:25px;font-style:normal;">Example: weight = 68 kg, height = 165 cm (1.65 m)</p>
+      <p style="text-align:center;font-size:25px;font-style:normal;">BMI calculation: 68 / (1.65)2 = 24.98</p>
+
+      <p style="text-align:left;font-size:25px">Note that BMI is interpreted differently in children. Growth charts and percentiles are used. If children are at or above the 95th percentile of children their age, they are considered obese.</p>
+     <table>
+        <h3>For adults, BMI results are interpreted as follows.</h3>
+       
+    </table>
+      
+    </span>
+</section>
+
+<section class=" form-popup " id="myForm ">
+    <form method="post ">
+        {% csrf_token %}
+        <div class="container ">
+            <h1>BMI Calculator</h1>
+            <label>
+            <input id="h-input " name="height " type="floatformat " placeholder="Enter Your Height in inches: ">
+        </label>
+            <label>
+            <input id="w-input " name="weight "type="floatformat " placeholder="Enter Your Weight in Pounds: ">
+        </label>
+            <button type="submit ">Calculate BMI</button>
+
+            <div class="bmi-value ">
+                <h4>BMI Value: </h4>
+                <div id="bmi-output ">{{bmi}}</div>
+            </div>
+            <div class="status ">
+                <h4>Status: </h4>
+                <div id="bmi-status ">{{response}}</div>
+            </div>
+        </div>
+
+    </form>
+</section>
+
+
+
+
+<footer class="page-footer font-small blue " style="background-color:#17a2b8; ">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 ">© 2021 Copyright@
+        <a href="premierfitness.com " style="color:white; ">premeirfitness</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+{% endblock %}
