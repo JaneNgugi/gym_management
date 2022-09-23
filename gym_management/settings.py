@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Classes',
     'my_bmi',
     'forms',
+    'registration',
 ]
 
 MIDDLEWARE = [
